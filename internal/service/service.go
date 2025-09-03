@@ -17,12 +17,12 @@ func Transform(data string) (string, error) {
 
 	//проверка на наличие символов, отличных от Морзе
 	check := func(chk rune) bool {
-		return chk != '-' && chk != '.' && unicode.IsSpace(chk)
+		return chk != '-' && chk != '.' && !unicode.IsSpace(chk)
 	}
 	//опредление входного текста
 	isMorse := strings.ContainsFunc(data, check)
 
-	if isMorse == true {
+	if isMorse {
 		return morse.ToMorse(data), nil
 	} else {
 		return morse.ToText(data), nil
